@@ -1,7 +1,13 @@
 package chap02;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * 암호 검사기 테스트
+ */
 class PasswordStrengthMeterTest {
 
     /**
@@ -9,7 +15,9 @@ class PasswordStrengthMeterTest {
      */
     @Test
     void meetsAllCriteria_Then_Strong() {
-        // TODO
+        PasswordStrengthMeter meter = new PasswordStrengthMeter();
+        PasswordStrength result = meter.meter("ab12!@AB");
+        assertEquals(PasswordStrength.STRONG, result);
     }
 
 }
