@@ -19,7 +19,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class PasswordStrengthMeterTest {
 
     /**
-     * 모든 규칙을 충족하는 경우 강함
+     * 모든 규칙을 충족하는 경우
+     * -> 강함
      */
     @Test
     void meetsAllCriteria_Then_Strong() {
@@ -29,6 +30,17 @@ class PasswordStrengthMeterTest {
 
         PasswordStrength result2 = meter.meter("abc1!Add");
         assertEquals(STRONG, result2);
+    }
+
+    /**
+     * 길이만 8글자 미만이고, 나머지 조건은 충족하는 경우
+     * -> 보통
+     */
+    @Test
+    void meetsOtherCriteria_except_for_Length_Then_Normal() {
+        PasswordStrengthMeter meter = new PasswordStrengthMeter();
+        PasswordStrength result = meter.meter("ab12!@A");
+        assertEquals(NORMAL, result);
     }
 
 }
