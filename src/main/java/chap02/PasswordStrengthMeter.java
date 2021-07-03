@@ -7,15 +7,20 @@ public class PasswordStrengthMeter {
             return PasswordStrength.NORMAL;
         }
 
-        boolean containsNum = false;
+        boolean containsNum = meetContainingNumberCriteria(s);
+        if(!containsNum) return PasswordStrength.NORMAL;
+
+        return PasswordStrength.STRONG;
+    }
+
+    /* 숫자 포함 여부 확인 */
+    private boolean meetContainingNumberCriteria(String s) {
         for (char ch : s.toCharArray()) {
             if (ch >= '0' && ch <= '9') {
-                containsNum = true;
-                break;
+                return true;
             }
         }
-        if(!containsNum) return PasswordStrength.NORMAL;
-        return PasswordStrength.STRONG;
+        return false;
     }
 
 }
