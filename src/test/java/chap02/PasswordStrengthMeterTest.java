@@ -45,7 +45,6 @@ class PasswordStrengthMeterTest {
         assertStrength("Ab12!c", NORMAL);
     }
 
-
     /**
      * 숫자를 포함하지 않고, 나머지 조건은 충족하는 경우
      * -> 보통
@@ -53,6 +52,15 @@ class PasswordStrengthMeterTest {
     @Test
     void meetsOtherCriteria_except_for_number_Then_Normal() {
         assertStrength("ab!@ABqwer", NORMAL);
+    }
+
+    /**
+     * 값이 없는 경우
+     * -> INVALID 리턴
+     */
+    @Test
+    void nullInput_Then_Invalid() {
+        assertStrength(null, PasswordStrength.INVALID);
     }
 
 }
