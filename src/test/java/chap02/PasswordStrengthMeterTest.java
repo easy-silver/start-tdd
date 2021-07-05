@@ -78,8 +78,17 @@ class PasswordStrengthMeterTest {
      * -> 약함
      */
     @Test
-    void meetsOnlyLengthCriteria_Then_Week() {
+    void meetsOnlyLengthCriteria_Then_Weak() {
         assertStrength("adbefghi", WEAK);
+    }
+
+    /**
+     * 숫자 포함 조건만 충족하는 경우
+     * -> 약함
+     */
+    @Test
+    void meetsOnlyNumCriteria_Then_Weak() {
+        assertStrength("12345", WEAK);
     }
 
 }
