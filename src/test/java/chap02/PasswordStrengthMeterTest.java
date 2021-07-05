@@ -79,7 +79,7 @@ class PasswordStrengthMeterTest {
      */
     @Test
     void meetsOnlyLengthCriteria_Then_Week() {
-        assertStrength("adbefghi", WEEK);
+        assertStrength("adbefghi", WEAK);
     }
 
 }
