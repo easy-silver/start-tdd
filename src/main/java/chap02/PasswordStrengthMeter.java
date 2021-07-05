@@ -2,21 +2,36 @@ package chap02;
 
 import static chap02.PasswordStrength.*;
 
+/**
+ * 암호 강도 검사 클래스
+ */
 public class PasswordStrengthMeter {
 
-    public PasswordStrength meter(String s) {
-        if(s == null || s.isEmpty()) return INVALID;
+    /**
+     * 입력 받은 암호의 보안 강도를 반환한다.
+     *
+     * @param password
+     * @return
+     */
+    public PasswordStrength meter(String password) {
+        if(password == null || password.isEmpty()) return INVALID;
 
-        int metCounts = 0;
-
-        if(s.length() >= 8) metCounts++;
-        if(meetContainingNumberCriteria(s)) metCounts++;
-        if(meetsContainingUppercaseCriteria(s)) metCounts++;
-
+        int metCounts = getMetCriteriaCounts(password);
         if(metCounts <= 1) return WEAK;
         if(metCounts == 2) return NORMAL;
 
         return STRONG;
+    }
+
+    /* 조건을 만족하는 횟수 확인 */
+    private int getMetCriteriaCounts(String password) {
+        int metCounts = 0;
+
+        if(password.length() >= 8) metCounts++;
+        if(meetContainingNumberCriteria(password)) metCounts++;
+        if(meetsContainingUppercaseCriteria(password)) metCounts++;
+
+        return metCounts;
     }
 
     /* 숫자 포함 여부 확인 */
