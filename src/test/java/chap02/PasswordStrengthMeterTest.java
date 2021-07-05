@@ -73,4 +73,13 @@ class PasswordStrengthMeterTest {
         assertStrength("ab12!@df", NORMAL);
     }
 
+    /**
+     * 길이가 8글자 이상인 조건만 충족하는 경우
+     * -> 약함
+     */
+    @Test
+    void meetsOnlyLengthCriteria_Then_Week() {
+        assertStrength("adbefghi", WEEK);
+    }
+
 }
