@@ -91,4 +91,13 @@ class PasswordStrengthMeterTest {
         assertStrength("12345", WEAK);
     }
 
+    /**
+     * 대문자 포함 조건만 충족하는 경우
+     * -> 약함
+     */
+    @Test
+    void meetsOnlyUpperCriteria_Then_Weak() {
+        assertStrength("ABZEF", WEAK);
+    }
+
 }
