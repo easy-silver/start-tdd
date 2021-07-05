@@ -1,26 +1,22 @@
 package chap02;
 
+import static chap02.PasswordStrength.*;
+
 public class PasswordStrengthMeter {
 
     public PasswordStrength meter(String s) {
-        if(s == null || s.isEmpty()) return PasswordStrength.INVALID;
+        if(s == null || s.isEmpty()) return INVALID;
 
-        boolean lengthEnough = s.length() >= 8;
-        boolean containsNum = meetContainingNumberCriteria(s);
-        boolean containsUpp = meetsContainingUppercaseCriteria(s);
+        int metCounts = 0;
 
-        if(lengthEnough && !containsNum && !containsUpp)
-            return PasswordStrength.WEAK;
-        if(!lengthEnough && containsNum && !containsUpp)
-            return PasswordStrength.WEAK;
-        if(!lengthEnough && !containsNum && containsUpp)
-            return PasswordStrength.WEAK;
+        if(s.length() >= 8) metCounts++;
+        if(meetContainingNumberCriteria(s)) metCounts++;
+        if(meetsContainingUppercaseCriteria(s)) metCounts++;
 
-        if(!lengthEnough) return PasswordStrength.NORMAL;
-        if(!containsNum) return PasswordStrength.NORMAL;
-        if(!containsUpp) return PasswordStrength.NORMAL;
+        if(metCounts == 1) return WEAK;
+        if(metCounts == 2) return NORMAL;
 
-        return PasswordStrength.STRONG;
+        return STRONG;
     }
 
     /* 숫자 포함 여부 확인 */
