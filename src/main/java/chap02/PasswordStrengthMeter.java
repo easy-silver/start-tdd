@@ -13,7 +13,7 @@ public class PasswordStrengthMeter {
         if(meetContainingNumberCriteria(s)) metCounts++;
         if(meetsContainingUppercaseCriteria(s)) metCounts++;
 
-        if(metCounts == 1) return WEAK;
+        if(metCounts <= 1) return WEAK;
         if(metCounts == 2) return NORMAL;
 
         return STRONG;
