@@ -7,6 +7,8 @@ import static chap02.PasswordStrength.*;
  */
 public class PasswordStrengthMeter {
 
+    public static final int PASSWORD_MAX_LENGTH = 8;
+
     /**
      * 입력 받은 암호의 보안 강도를 반환한다.
      *
@@ -27,7 +29,7 @@ public class PasswordStrengthMeter {
     private int getMetCriteriaCounts(String password) {
         int metCounts = 0;
 
-        if(password.length() >= 8) metCounts++;
+        if(password.length() >= PASSWORD_MAX_LENGTH) metCounts++;
         if(meetContainingNumberCriteria(password)) metCounts++;
         if(meetsContainingUppercaseCriteria(password)) metCounts++;
 
