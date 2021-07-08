@@ -31,6 +31,12 @@ class ExpiryDateCalculatorTest {
         assertExpiryDate(
                 LocalDate.of(2019, 1, 31), 10_000,
                 LocalDate.of(2019, 2, 28));
+        assertExpiryDate(
+                LocalDate.of(2019, 5, 31), 10_000,
+                LocalDate.of(2019, 6, 30));
+        assertExpiryDate(
+                LocalDate.of(2020, 1, 31), 10_000,
+                LocalDate.of(2020, 2, 29));
     }
 
     /* 납부일과 납부액을 전달하여 예상 만료일을 검증하는 메서드 */
