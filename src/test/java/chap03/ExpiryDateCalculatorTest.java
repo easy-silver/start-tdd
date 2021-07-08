@@ -26,6 +26,13 @@ class ExpiryDateCalculatorTest {
                 LocalDate.of(2019, 6, 5));
     }
 
+    @Test
+    void 납부일과_한달_뒤_일자가_같지_않음() {
+        assertExpiryDate(
+                LocalDate.of(2019, 1, 31), 10_000,
+                LocalDate.of(2019, 2, 28));
+    }
+
     /* 납부일과 납부액을 전달하여 예상 만료일을 검증하는 메서드 */
     private void assertExpiryDate(LocalDate billingDate, int payAmount, LocalDate expectedExpiryDate) {
         ExpiryDateCalculator cal = new ExpiryDateCalculator();
