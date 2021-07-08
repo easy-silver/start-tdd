@@ -1,11 +1,10 @@
 package chap03;
 
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * 서비스 만료일 계산기 테스트
@@ -26,6 +25,5 @@ class ExpiryDateCalculatorTest {
         LocalDate expiryDate = cal.calculateExpiryDate(billingDate, payAmount);
 
         assertEquals(LocalDate.of(2019, 4, 1), expiryDate);
-
     }
 }
