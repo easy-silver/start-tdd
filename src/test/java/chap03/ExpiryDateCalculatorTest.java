@@ -1,5 +1,12 @@
 package chap03;
 
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+import java.time.LocalDate;
+
+import static org.junit.jupiter.api.Assertions.*;
+
 /**
  * 서비스 만료일 계산기 테스트
  *
@@ -10,4 +17,15 @@ package chap03;
  */
 class ExpiryDateCalculatorTest {
 
+    @Test
+    void 만원_납부하면_한달_뒤가_만료일이_됨() {
+        LocalDate billingDate = LocalDate.of(2019, 3, 1);
+        int payAmount = 10_000;
+
+        ExpiryDateCalculator cal = new ExpiryDateCalculator();
+        LocalDate expiryDate = cal.calculateExpiryDate(billingDate, payAmount);
+
+        assertEquals(LocalDate.of(2019, 4, 1), expiryDate);
+
+    }
 }
