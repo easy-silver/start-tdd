@@ -75,6 +75,14 @@ class ExpiryDateCalculatorTest {
 
         assertExpiryDate(payData2, LocalDate.of(2019, 3, 30));
 
+        PayData payData3 = PayData.builder()
+                .firstBillingDate(LocalDate.of(2019, 5, 31))
+                .billingDate(LocalDate.of(2019, 6, 30))
+                .payAmount(10_000)
+                .build();
+
+        assertExpiryDate(payData3, LocalDate.of(2019, 7, 31));
+
     }
 
     /* 납부일과 납부액을 전달하여 예상 만료일을 검증하는 메서드 */
