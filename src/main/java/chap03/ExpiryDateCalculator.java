@@ -14,23 +14,29 @@ public class ExpiryDateCalculator {
         int addedMonths = payData.getPayAmount() / 10_000;
 
         if (payData.getFirstBillingDate() != null) {
-            LocalDate candidateExp =
-                    payData.getBillingDate().plusMonths(addedMonths);
-
-            //첫 납부일과 납부일의 일자가 다르면 첫 납부일의 일자를 만료일의 일자로 사용
-            if (payData.getFirstBillingDate().getDayOfMonth()
-                    != candidateExp.getDayOfMonth()) {
-                if (YearMonth.from(candidateExp).lengthOfMonth() <
-                        payData.getFirstBillingDate().getDayOfMonth()) {
-                    return candidateExp.withDayOfMonth(
-                            YearMonth.from(candidateExp).lengthOfMonth());
-                }
-                return candidateExp.withDayOfMonth(
-                        payData.getFirstBillingDate().getDayOfMonth());
-            }
+            return expiryDateUsingFirstBillingDate(payData, addedMonths);
+        } else {
+            return payData.getBillingDate().plusMonths(addedMonths);
         }
+    }
 
-        return payData.getBillingDate().plusMonths(addedMonths);
+    private LocalDate expiryDateUsingFirstBillingDate(PayData payData, int addedMonths) {
+        LocalDate candidateExp = payData.getBillingDate().plusMonths(addedMonths);
+        //첫 납부일의 일자
+        final int dayOfFirstBilling = payData.getFirstBillingDate().getDayOfMonth();
+
+        //첫 납부일과 납부일의 일자가 다르면 첫 납부일의 일자를 만료일의 일자로 사용
+        if (dayOfFirstBilling != candidateExp.getDayOfMonth()) {
+
+            //만료일이 속한 월의 마지막 일자
+            final int dayLenOfiCandiMon = YearMonth.from(candidateExp).lengthOfMonth();
+            if (dayLenOfiCandiMon < payData.getFirstBillingDate().getDayOfMonth()) {
+                return candidateExp.withDayOfMonth(dayLenOfiCandiMon);
+            }
+            return candidateExp.withDayOfMonth(dayOfFirstBilling);
+        } else {
+            return candidateExp;
+        }
     }
 }
 
