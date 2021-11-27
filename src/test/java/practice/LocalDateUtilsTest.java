@@ -7,9 +7,11 @@ import org.junit.jupiter.api.Test;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 public class LocalDateUtilsTest {
 
-    @DisplayName("입력 요일이 타겟 요일 배열에 포함되어 있음")
+    @DisplayName("입력 요일이 타겟 요일 안에 포함되어 있음")
     @Test
     void isIncludeDay () {
         //given
@@ -23,11 +25,11 @@ public class LocalDateUtilsTest {
         boolean resultOfTomorrow = LocalDateUtils.isIncludeInDays(dayOfTomorrow, targetDays);
 
         //then
-        Assertions.assertTrue(resultOfToday);
-        Assertions.assertTrue(resultOfTomorrow);
+        assertTrue(resultOfToday);
+        assertTrue(resultOfTomorrow);
     }
 
-    @DisplayName("입력 요일이 타겟 요일 배열에 포함되어 있지 않음")
+    @DisplayName("입력 요일이 타겟 요일 안에 포함되어 있지 않음")
     @Test
     void isNotIncludeDay() {
         //given
@@ -39,7 +41,21 @@ public class LocalDateUtilsTest {
         boolean resultOfToday = LocalDateUtils.isIncludeInDays(dayOfToday, targetDays);
 
         //then
-        Assertions.assertFalse(resultOfToday);
+        assertFalse(resultOfToday);
+    }
+
+    @DisplayName("입력 요일이 Null인 경우")
+    @Test
+    void dayIsNull() {
+        //given
+        String targetDays = "월,화,수,목,금,토,일";
+        DayOfWeek dayNull = null;
+
+        //when
+        boolean resultOfNull = LocalDateUtils.isIncludeInDays(dayNull, targetDays);
+
+        //then
+        assertFalse(resultOfNull);
     }
 
 }
