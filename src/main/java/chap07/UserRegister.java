@@ -29,6 +29,6 @@ public class UserRegister {
         }
 
         //회원 등록
-        userRepository.save(new User("id", "pw", "email"));
+        userRepository.save(new User(id, pw, email));
     }
 }
