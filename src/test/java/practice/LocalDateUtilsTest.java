@@ -57,4 +57,18 @@ public class LocalDateUtilsTest {
         assertFalse(resultOfNull);
     }
 
+    @DisplayName("기준 요일 문자열이 Null인 경우")
+    @Test
+    void daysIsNull() {
+        //given
+        String targetDays = null;
+        DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
+        
+        //when
+        boolean resultOfTargetNull = LocalDateUtils.isIncludeInDays(dayOfWeek, targetDays);
+
+        //then
+        assertFalse(resultOfTargetNull);
+    }
+
 }
