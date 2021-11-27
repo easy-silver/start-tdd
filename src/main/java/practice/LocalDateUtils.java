@@ -17,6 +17,10 @@ public class LocalDateUtils {
      * @return
      */
     public static boolean isIncludeInDays(DayOfWeek dayOfWeek, String targetDays) {
+        if (dayOfWeek == null) {
+            return false;
+        }
+
         String dayOfWeekDisplayName = dayOfWeek.getDisplayName(TextStyle.SHORT, Locale.KOREA);
 
         List<String> listOfTargetDays = Arrays.asList(targetDays.split(","));
