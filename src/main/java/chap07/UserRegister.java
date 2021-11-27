@@ -27,5 +27,8 @@ public class UserRegister {
         if (user != null) {
             throw new DupIdException();
         }
+
+        //회원 등록
+        userRepository.save(new User("id", "pw", "email"));
     }
 }
