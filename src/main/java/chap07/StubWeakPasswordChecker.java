@@ -7,4 +7,9 @@ public class StubWeakPasswordChecker implements WeakPasswordChecker {
         this.weak = weak;
     }
 
+    @Override
+    public boolean checkPasswordWeak(String pw) {
+        return weak;
+    }
+
 }

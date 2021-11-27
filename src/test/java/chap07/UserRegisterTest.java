@@ -24,6 +24,6 @@ public class UserRegisterTest {
         assertThrows(WeakPasswordException.class, () -> {
             userRegister.register("id", "pw", "email");
         });
-
     }
+
 }
