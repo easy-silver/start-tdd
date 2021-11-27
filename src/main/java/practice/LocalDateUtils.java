@@ -17,7 +17,7 @@ public class LocalDateUtils {
      * @return
      */
     public static boolean isIncludeInDays(DayOfWeek dayOfWeek, String targetDays) {
-        if (dayOfWeek == null) {
+        if (dayOfWeek == null || targetDays == null) {
             return false;
         }
 
