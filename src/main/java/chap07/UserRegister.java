@@ -34,5 +34,8 @@ public class UserRegister {
 
         //회원 등록
         userRepository.save(new User(id, pw, email));
+
+        //회원 가입 알림 이메일 발송
+        emailNotifier.sendRegisterEmail(email);
     }
 }
