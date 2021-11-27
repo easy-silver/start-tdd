@@ -1,0 +1,19 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'junit:junit:4.13'
+    implementation 'org.springframework:spring-context:5.0.10.RELEASE'
+}
+
+application {
+    mainClass = 'start.tdd.StartTddApplication'
+}
