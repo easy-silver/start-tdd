@@ -9,10 +9,23 @@ public class UserRegister {
         this.userRepository = userRepository;
     }
 
+    /**
+     * 회원 가입
+     *
+     * @param id
+     * @param pw
+     * @param email
+     */
     public void register(String id, String pw, String email) {
+        //비밀번호 검증
         if (passwordChecker.checkPasswordWeak(pw)) {
             throw new WeakPasswordException();
         }
-        throw new DupIdException();
+
+        //ID 중복 검증
+        User user = userRepository.findById(id);
+        if (user != null) {
+            throw new DupIdException();
+        }
     }
 }
