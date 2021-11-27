@@ -16,7 +16,7 @@ public class LocalDateUtilsIsIncludeInDaysTest {
 
     @DisplayName("입력 요일이 타겟 요일 안에 포함되어 있음")
     @Test
-    void isIncludeDay () {
+    void isIncluded () {
         //given
         String targetDays = "토,일";
 
@@ -24,8 +24,8 @@ public class LocalDateUtilsIsIncludeInDaysTest {
         DayOfWeek dayOfTomorrow = LocalDate.now().plusDays(1).getDayOfWeek();
 
         //when
-        boolean resultOfToday = LocalDateUtils.isIncludeInDays(dayOfNow, targetDays);
-        boolean resultOfTomorrow = LocalDateUtils.isIncludeInDays(dayOfTomorrow, targetDays);
+        boolean resultOfToday = LocalDateUtils.isIncludedInDays(dayOfNow, targetDays);
+        boolean resultOfTomorrow = LocalDateUtils.isIncludedInDays(dayOfTomorrow, targetDays);
 
         //then
         assertTrue(resultOfToday);
@@ -34,14 +34,14 @@ public class LocalDateUtilsIsIncludeInDaysTest {
 
     @DisplayName("입력 요일이 타겟 요일 안에 포함되어 있지 않음")
     @Test
-    void isNotIncludeDay() {
+    void isNotIncluded() {
         //given
         String targetDays = "월,수,금";
 
         DayOfWeek dayOfToday = LocalDate.now().getDayOfWeek();
 
         //when
-        boolean resultOfToday = LocalDateUtils.isIncludeInDays(dayOfToday, targetDays);
+        boolean resultOfToday = LocalDateUtils.isIncludedInDays(dayOfToday, targetDays);
 
         //then
         assertFalse(resultOfToday);
@@ -51,11 +51,11 @@ public class LocalDateUtilsIsIncludeInDaysTest {
     @Test
     void dayIsNull() {
         //given
-        String targetDays = "월,화,수,목,금,토,일";
+        String stringOfDays = "월,화,수,목,금,토,일";
         DayOfWeek dayNull = null;
 
         //when
-        boolean resultOfNull = LocalDateUtils.isIncludeInDays(dayNull, targetDays);
+        boolean resultOfNull = LocalDateUtils.isIncludedInDays(dayNull, stringOfDays);
 
         //then
         assertFalse(resultOfNull);
@@ -65,14 +65,52 @@ public class LocalDateUtilsIsIncludeInDaysTest {
     @Test
     void daysIsNull() {
         //given
-        String targetDays = null;
+        String stringOfDays = null;
         DayOfWeek dayOfWeek = LocalDate.now().getDayOfWeek();
         
         //when
-        boolean resultOfTargetNull = LocalDateUtils.isIncludeInDays(dayOfWeek, targetDays);
+        boolean resultOfTargetNull = LocalDateUtils.isIncludedInDays(dayOfWeek, stringOfDays);
 
         //then
         assertFalse(resultOfTargetNull);
     }
 
+    @DisplayName("오늘이 기준 요일 문자열에 포함")
+    @Test
+    void todayIsIncluded() {
+        //given
+        String stringOfDays = "월,화,수,목,금,토,일";
+
+        //when
+        boolean result = LocalDateUtils.isTodayIncludedInDays(stringOfDays);
+
+        //then
+        assertTrue(result);
+    }
+
+    @DisplayName("오늘이 기준 요일 문자열에 미포함")
+    @Test
+    void todayIsNotIncluded() {
+        //given
+        String stringOfDays = "월,화,수,목,금";
+
+        //when
+        boolean result = LocalDateUtils.isTodayIncludedInDays(stringOfDays);
+
+        //then
+        assertFalse(result);
+    }
+
+    @DisplayName("기준 요일 문자열이 Null인 경우")
+    @Test
+    void daysIsNullWhenCheckToday() {
+        //given
+        String stringOfDays = null;
+
+        //when
+        boolean resultOfTargetNull = LocalDateUtils.isTodayIncludedInDays(stringOfDays);
+
+        //then
+        assertFalse(resultOfTargetNull);
+    }
 }
