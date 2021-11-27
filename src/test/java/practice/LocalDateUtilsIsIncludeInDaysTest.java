@@ -8,7 +8,11 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class LocalDateUtilsTest {
+/**
+ * LocalDateUtils 클래스의
+ * isIncludeInDays 메서드 검증 테스트 클래스
+ */
+public class LocalDateUtilsIsIncludeInDaysTest {
 
     @DisplayName("입력 요일이 타겟 요일 안에 포함되어 있음")
     @Test

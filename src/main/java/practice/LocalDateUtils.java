@@ -9,11 +9,11 @@ import java.util.Locale;
 public class LocalDateUtils {
 
     /**
-     * "월,수,금"처럼 연결된 요일 문자열과,
-     *  확인하고 싶은 특정 요일이 일치하는지 확인
+     * 요일이 연결된 문자열과
+     * 확인하고 싶은 특정 요일이 일치하는지 확인
      *
      * @param dayOfWeek 확인하고 싶은 요일
-     * @param targetDays 기준 요일들
+     * @param targetDays 기준 요일들(ex. "월,수,금")
      * @return
      */
     public static boolean isIncludeInDays(DayOfWeek dayOfWeek, String targetDays) {
